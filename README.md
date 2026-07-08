@@ -36,7 +36,16 @@ OBBS is a web application that allows users to browse banquet services, view eve
 
 > Add screenshots here for a stronger impression — homepage, booking page, and admin dashboard work best.
 >
-> `![Homepage](screenshots/homepage.png)`
+> <img width="959" height="460" alt="Screenshot 2026-07-08 195619" src="https://github.com/user-attachments/assets/2f6bc159-bb4d-48d2-b770-4f3d25f1127e" />
+
+<img width="959" height="539" alt="Screenshot 2026-07-08 195652" src="https://github.com/user-attachments/assets/9c10dc78-8a25-48ad-8190-faa99238dff3" />
+
+<img width="959" height="539" alt="Screenshot 2026-07-08 195708" src="https://github.com/user-attachments/assets/6b8b9ebd-315b-430c-97bc-54b0e18c5583" />
+
+<img width="959" height="539" alt="Screenshot 2026-07-08 195800" src="https://github.com/user-attachments/assets/5352c32e-a74e-4d01-9275-586ac8f78006" />
+
+
+
 
 ## 🚀 Getting Started
 
