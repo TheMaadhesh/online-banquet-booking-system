@@ -1,0 +1,22 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+error_log
+
+# Environment / config (add real DB credentials here if you separate them out)
+.env
+
+# Composer (if used later)
+vendor/
+composer.lock
+
+# Uploaded files at runtime (optional - uncomment if these grow large)
+# obbs/images/uploads/
