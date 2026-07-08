@@ -1,0 +1,121 @@
+/* ============================================================
+   IIM-inspired theme layer for the OBBS Admin panel (Codebase/One UI).
+   Loaded AFTER assets/css/codebase.min.css so these rules win.
+   Brings over the Internal Inventory Management System's dark,
+   glassy, blue-accented dashboard language without touching any
+   PHP logic or markup.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --iim-accent:        #3b82f6;
+    --iim-accent-dark:   #1d4ed8;
+    --iim-sidebar-bg:     #0f1829;
+    --iim-sidebar-bg-2:   #0b1220;
+    --iim-card-radius:   14px;
+    --iim-shadow:        0 4px 22px rgba(15,23,43,0.35), 0 1px 4px rgba(15,23,43,0.25);
+    --iim-shadow-hover:  0 14px 34px rgba(59,130,246,0.28), 0 4px 12px rgba(15,23,43,0.30);
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* ---------- Brand color swap: codebase blue -> IIM blue gradient ---------- */
+.btn-primary,
+#page-loader {
+    background: linear-gradient(135deg, var(--iim-accent) 0%, var(--iim-accent-dark) 100%) !important;
+    border-color: var(--iim-accent-dark) !important;
+    box-shadow: 0 4px 14px rgba(59,130,246,0.35);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    filter: brightness(1.08);
+}
+.badge-primary,
+.bg-primary,
+.page-item.active .page-link {
+    background-color: var(--iim-accent) !important;
+}
+.text-primary,
+.nav-main a.active > i,
+.nav-main a:hover > i,
+.nav-main li.open > a.nav-submenu > i {
+    color: var(--iim-accent) !important;
+}
+.border-primary { border-color: var(--iim-accent) !important; }
+
+/* ---------- Sidebar: darker navy to match IIM's dark theme ---------- */
+#page-container.sidebar-inverse #sidebar {
+    background-color: var(--iim-sidebar-bg);
+}
+#page-container.sidebar-inverse #sidebar .content-side-user {
+    background-color: var(--iim-sidebar-bg-2);
+}
+.nav-main li.open > ul {
+    background-color: rgba(255,255,255,0.03) !important;
+}
+.sidebar-inverse #sidebar .nav-main a.active,
+.sidebar-inverse #sidebar .nav-main a:hover {
+    background: rgba(59,130,246,0.12);
+    border-radius: 8px;
+}
+
+/* ---------- Stat / ribbon cards on the dashboard ---------- */
+.bg-gd-dusk {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%) !important;
+}
+.bg-gd-sea {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%) !important;
+}
+.ribbon .block-content {
+    border-radius: var(--iim-card-radius);
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+.ribbon a.block:hover .block-content {
+    transform: translateY(-3px);
+    box-shadow: var(--iim-shadow-hover);
+}
+
+/* ---------- Content blocks / cards ---------- */
+.block {
+    border-radius: var(--iim-card-radius);
+    box-shadow: var(--iim-shadow);
+}
+.block.block-rounded {
+    border-radius: var(--iim-card-radius);
+}
+.block-header-default {
+    border-top-left-radius: var(--iim-card-radius);
+    border-top-right-radius: var(--iim-card-radius);
+}
+
+/* ---------- Buttons & form controls: slightly softer corners ---------- */
+.btn {
+    border-radius: 8px;
+}
+.btn.btn-rounded {
+    border-radius: 999px !important;
+}
+.form-control,
+.custom-select {
+    border-radius: 8px;
+}
+
+/* ---------- Header ---------- */
+#page-header {
+    backdrop-filter: blur(10px);
+}
+
+/* ---------- Hide scrollbar (scrolling still works) ---------- */
+html, body {
+    -ms-overflow-style: none;   /* IE and Edge */
+    scrollbar-width: none;      /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+}

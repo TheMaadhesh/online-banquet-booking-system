@@ -1,0 +1,286 @@
+/* ============================================================
+   IIM-inspired theme layer for OBBS (Online Banquet Booking System)
+   Loaded AFTER restoran-assets/css/style.css so these rules win.
+   Adapts the Internal Inventory Management System's visual
+   language (Inter type, soft glass cards, gradient accents,
+   smooth link-hover motion) into this PHP/Bootstrap template,
+   while keeping the existing OBBS orange brand color (#FEA116).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --iim-primary:      #FEA116;
+    --iim-primary-dark: #e8890a;
+    --iim-ink:          #0F172B;
+    --iim-card-radius:  14px;
+    --iim-shadow:       0 4px 24px rgba(15,23,43,0.08), 0 1px 4px rgba(15,23,43,0.06);
+    --iim-shadow-hover: 0 14px 34px rgba(254,161,22,0.20), 0 4px 12px rgba(15,23,43,0.10);
+}
+
+body {
+    font-family: 'Inter', 'Heebo', sans-serif;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-dark {
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    letter-spacing: .03em;
+    transition: color .28s ease;
+}
+
+/* Animated underline that slides in on hover / marks the active page,
+   mirroring the IIM navbar's active-link treatment */
+.navbar-dark .navbar-nav .nav-link {
+    position: relative;
+}
+.navbar-dark .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 28px;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--iim-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    opacity: 0;
+    transition: transform .25s ease, opacity .25s ease;
+}
+.sticky-top.navbar-dark .navbar-nav .nav-link::after {
+    bottom: 13px;
+}
+.navbar-dark .navbar-nav .nav-link:hover::after,
+.navbar-dark .navbar-nav .nav-link.active::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-dark .navbar-nav .nav-link::after { display: none; }
+}
+
+/* ---------- Buttons ---------- */
+.btn.btn-primary {
+    background: linear-gradient(135deg, var(--iim-primary) 0%, var(--iim-primary-dark) 100%);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(254,161,22,0.35);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+    filter: brightness(1.06);
+    box-shadow: 0 8px 22px rgba(254,161,22,0.45);
+    transform: translateY(-1px);
+}
+.btn.btn-outline-light {
+    border-radius: 999px;
+    transition: transform .18s ease;
+}
+.btn.btn-outline-light:hover {
+    transform: translateY(-1px);
+}
+.btn-square {
+    border-radius: var(--iim-card-radius) !important;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.btn-square:hover {
+    transform: translateY(-2px);
+}
+
+/* ---------- Cards / info blocks ---------- */
+/* Quick-info bar, service/package cards, testimonial cards, etc. */
+.service-item,
+.package-item,
+.team-item,
+.testimonial-item,
+.card,
+.bg-light.rounded {
+    border-radius: var(--iim-card-radius) !important;
+    box-shadow: var(--iim-shadow);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.service-item:hover,
+.package-item:hover,
+.team-item:hover,
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--iim-shadow-hover);
+}
+
+.rounded {
+    border-radius: var(--iim-card-radius) !important;
+}
+
+/* Feature icon badges — subtle gradient pill like the IIM logo mark */
+.flex-shrink-0.btn-square,
+.icon-box {
+    background: linear-gradient(135deg, var(--iim-primary) 0%, var(--iim-primary-dark) 100%) !important;
+    color: #fff !important;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6, .section-title {
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Hide scrollbar (scrolling still works) ---------- */
+html, body {
+    -ms-overflow-style: none;   /* IE and Edge */
+    scrollbar-width: none;      /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+}
+
+/* ---------- Coverflow gallery ---------- */
+.coverflow-gallery {
+    position: relative;
+    height: 380px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.coverflow-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.coverflow-slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 230px;
+    border-radius: var(--iim-card-radius, 10px);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    transition: transform .55s cubic-bezier(.25,.8,.25,1), opacity .55s ease, box-shadow .55s ease, filter .55s ease;
+    cursor: pointer;
+    will-change: transform, opacity;
+}
+.coverflow-slide a,
+.coverflow-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* center / front slide */
+.coverflow-slide.cf-pos-0 {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    z-index: 5;
+    opacity: 1;
+    box-shadow: 0 22px 45px rgba(0,0,0,.28);
+    filter: none;
+}
+/* one slide back, each side */
+.coverflow-slide.cf-pos-1 {
+    transform: translate(-50%, -50%) translateX(230px) scale(.78);
+    z-index: 4;
+    opacity: .85;
+    box-shadow: 0 16px 30px rgba(0,0,0,.20);
+    filter: brightness(.9);
+}
+.coverflow-slide.cf-pos--1 {
+    transform: translate(-50%, -50%) translateX(-230px) scale(.78);
+    z-index: 4;
+    opacity: .85;
+    box-shadow: 0 16px 30px rgba(0,0,0,.20);
+    filter: brightness(.9);
+}
+/* two slides back, each side */
+.coverflow-slide.cf-pos-2 {
+    transform: translate(-50%, -50%) translateX(420px) scale(.6);
+    z-index: 3;
+    opacity: .55;
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    filter: brightness(.8);
+}
+.coverflow-slide.cf-pos--2 {
+    transform: translate(-50%, -50%) translateX(-420px) scale(.6);
+    z-index: 3;
+    opacity: .55;
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    filter: brightness(.8);
+}
+/* anything further out, parked out of view for the swipe transition */
+.coverflow-slide.cf-pos-hidden-right {
+    transform: translate(-50%, -50%) translateX(560px) scale(.5);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+.coverflow-slide.cf-pos-hidden-left {
+    transform: translate(-50%, -50%) translateX(-560px) scale(.5);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.coverflow-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    color: var(--iim-primary, #d4af37);
+    box-shadow: 0 6px 16px rgba(0,0,0,.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.coverflow-nav:hover {
+    background: var(--iim-primary, #d4af37);
+    color: #fff;
+}
+.coverflow-prev { left: 0; }
+.coverflow-next { right: 0; }
+
+.coverflow-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+}
+.coverflow-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.coverflow-dots span.active {
+    background: var(--iim-primary, #d4af37);
+    transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+    .coverflow-gallery { height: 260px; }
+    .coverflow-slide { width: 200px; height: 155px; }
+    .coverflow-slide.cf-pos-1 { transform: translate(-50%, -50%) translateX(130px) scale(.72); }
+    .coverflow-slide.cf-pos--1 { transform: translate(-50%, -50%) translateX(-130px) scale(.72); }
+    .coverflow-slide.cf-pos-2,
+    .coverflow-slide.cf-pos--2 { opacity: 0; pointer-events: none; }
+    .coverflow-nav { width: 36px; height: 36px; }
+}
